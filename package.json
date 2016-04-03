@@ -1,0 +1,40 @@
+{
+  "name": "scheme-sweet",
+  "version": "0.0.1",
+  "description": "A sweet suite of tools for creating sweet Sublime Text color schemes",
+  "main": "index.js",
+  "scripts": {
+    "style": "npm run style:main & npm run style:test",
+    "style:main": "jscs index.js template.js",
+    "style:test": "jscs test/*.js test/**/*.js",
+    "test": "npm run test:main",
+    "test:main": "./node_modules/.bin/mocha ./test/test.js",
+    "validate": "npm run style & npm run test"
+  },
+  "keywords": [
+    "sublime",
+    "text",
+    "scheme",
+    "syntax"
+  ],
+  "author": "Brian Reilly (https://github.com/Briles)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Briles/scheme-sweet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Briles/scheme-sweet/issues"
+  },
+  "homepage": "https://github.com/Briles/scheme-sweet#readme",
+  "license": "MIT",
+  "dependencies": {
+    "plist": "~1.2.0",
+    "tinycolor2": "~1.3.0",
+    "uuid": "~2.0.1"
+  },
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "jscs": "~2.11.0",
+    "mocha": "~2.4.5"
+  }
+}
