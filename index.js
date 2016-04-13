@@ -1,13 +1,13 @@
 var schemeSweet = (function () {
   'use strict';
 
-  const fs = require('fs');
-  const plist = require('plist');
-  const tinycolor = require('tinycolor2');
-  const uuid = require('uuid');
+  var fs = require('fs');
+  var plist = require('plist');
+  var tinycolor = require('tinycolor2');
+  var uuid = require('uuid');
   var template = require('./template.js');
 
-  const AUTHOR = 'Scheme Sweet (https://github.com/briles/scheme-sweet)';
+  var AUTHOR = 'Scheme Sweet (https://github.com/briles/scheme-sweet)';
 
   /**
    * The `SchemeSweet` class builds a tmTheme by populating a
