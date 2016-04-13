@@ -1,0 +1,164 @@
+.modal {
+  position: fixed;
+  z-index: 1000001;
+  top: 50%;
+  left: 50%;
+
+  visibility: hidden;
+  overflow: hidden;
+
+  width: 100%;
+  max-width: 960px;
+
+  transition: all 350ms ease-in-out;
+  transform: translate(-50%, -100%);
+
+  opacity: 0;
+  border-radius: $--border-radius;
+  background: hsl(0, 0%, 98%);
+  box-shadow: map-get($shadows, large);
+  &.active {
+    visibility: visible;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 1;
+  }
+}
+
+.modal-metadata {
+}
+
+.modal-header {
+  position: relative;
+
+  padding: 20px;
+
+  background: $white;
+  box-shadow: map-get($shadows, small);
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  padding: 20px;
+  .call-to-action {
+    width: 100%;
+
+    background: hsl(0, 0%, 22%);
+  }
+}
+
+.modal-title {
+  font-size: 24px;
+
+  display: block;
+
+  padding-right: 36px;
+
+  color: hsl(0, 0%, 50%);
+}
+
+.modal-close {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+
+  margin-top: -12px;
+
+  cursor: pointer;
+  transition: $--transition;
+
+  color: hsl(0, 0%, 50%);
+  &:hover {
+    color: hsl(0, 0%, 25%);
+  }
+}
+
+.metadata-inputs {
+}
+
+.metadata-fieldgroup {
+  font-weight: 500;
+
+  position: relative;
+
+  display: block;
+  overflow: hidden;
+
+  margin-bottom: 24px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.metadata-input-label {
+  font-size: 14px;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  display: block;
+
+  padding-right: 16px;
+
+  transition: $--transition;
+  transform: translate(100%, -50%);
+  letter-spacing: .027em;
+
+  opacity: .5;
+}
+
+.metadata-input {
+  font-size: 16px;
+
+  display: block;
+
+  width: 100%;
+  padding: 10px 16px;
+
+  color: hsl(0, 0%, 38%);
+  border: 0;
+  outline: 0;
+  background: hsl(0, 0%, 92%);
+  &:focus {
+    + label {
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+.scheme-preview {
+  font-size: 16px;
+  font-weight: 500;
+
+  display: block;
+  overflow-y: auto;
+
+  width: 100%;
+  max-height: 50vh;
+  padding: 10px 16px;
+
+  white-space: pre;
+
+  color: hsl(0, 0%, 38%);
+  border: 0;
+  outline: 0;
+  background: hsl(0, 0%, 92%);
+}
+
+
+@media screen and (max-width: 480px) {
+  .modal.active {
+    top: 5px;
+    right: 5px;
+    left: 5px;
+
+    width: initial;
+
+    transform: none;
+  }
+}

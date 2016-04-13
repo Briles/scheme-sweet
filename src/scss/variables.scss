@@ -1,0 +1,14 @@
+// Palette
+$white: #fff;
+$black: #000;
+$shadow-color: fade-out($black, .73);
+
+//
+$--font-stack-sans: Roboto, sans-serif;
+$--font-stack-mono: 'Roboto Mono', monospaced;
+$--transition: all 200ms ease-in-out;
+$--border-radius: 3px;
+$shadows: (
+  small: 0 0 3px $shadow-color,
+  large: 0 0 8px $shadow-color,
+);

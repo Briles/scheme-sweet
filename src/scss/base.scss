@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: normal normal 14px / 24px $--font-stack-sans;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+
+  margin: 0;
+}
+
+code {
+  font-family: $--font-stack-mono;
+}
+
+svg {
+  fill: currentColor;
+}
+
+.material-icons {
+  display: inline-block;
+
+  vertical-align: middle;
+}
+
+.de-emph {
+  opacity: .5;
+}
+
+.clearfix {
+  &::before, &::after {
+    display: table;
+
+    content: ' ';
+  }
+  &::after {
+    clear: both;
+  }
+}

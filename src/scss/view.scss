@@ -1,0 +1,24 @@
+.view-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.view-pane {
+  display: flex;
+
+  align-self: stretch;
+}
+
+@media screen and (max-width: 760px) {
+  .view-container {
+    width: auto;
+    max-width: initial;
+    height: auto;
+    max-height: initial;
+  }
+}
