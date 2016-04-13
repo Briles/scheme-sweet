@@ -31,7 +31,6 @@
       author: 'metadata.author',
       comment: 'metadata.comment',
     },
-    template: 'template.js',
   };
   const mockValidInstance = new SchemeSweet(mockValidPalette);
 
