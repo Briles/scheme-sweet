@@ -6,7 +6,7 @@
   "scripts": {
     "style": "npm run style:main & npm run style:test",
     "style:main": "jscs index.js template.js",
-    "style:test": "jscs test/*.js test/**/*.js",
+    "style:test": "jscs test/test.js",
     "test": "npm run test:main",
     "test:main": "./node_modules/.bin/mocha ./test/test.js",
     "validate": "npm run style & npm run test"

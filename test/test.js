@@ -4,7 +4,9 @@
   const SchemeSweet = require('../index.js');
   const assert = require('chai').assert;
 
-  const mockValidPalette = {
+  const hexColorRe = new RegExp('#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})');
+
+  const mockValidConfig = {
     palette: {
       background: '#430d39',
       bg1: '#430d39',
@@ -32,21 +34,43 @@
       comment: 'metadata.comment',
     },
   };
-  const mockValidInstance = new SchemeSweet(mockValidPalette);
+  const mockValidInstance = new SchemeSweet(mockValidConfig);
 
   describe('SchemeSweet', function () {
     describe('constructor', function () {
       it('should always return a SchemeSweet instance', function () {
-        assert.instanceOf(SchemeSweet(mockValidPalette), SchemeSweet);
-        assert.instanceOf(new SchemeSweet(mockValidPalette), SchemeSweet);
+        assert.instanceOf(SchemeSweet(mockValidConfig), SchemeSweet);
+        assert.instanceOf(new SchemeSweet(mockValidConfig), SchemeSweet);
       });
 
-      for (var prop in mockValidPalette) {
-        prop = '_' + prop;
-        it('should have instance property: ' + prop, function () {
-          assert.property(mockValidInstance, prop);
+      for (var confProp in mockValidConfig) {
+        confProp = '_' + confProp;
+        it('should have instance property: ' + confProp, function () {
+          assert.property(mockValidInstance, confProp);
         });
       }
+
+      for (var colorProp in mockValidConfig.palette) {
+        var color = mockValidInstance._palette[colorProp];
+
+        it('should have instance palette property: ' + colorProp, function () {
+          assert.property(mockValidInstance._palette, colorProp);
+        });
+
+        it('should be a valid Hex color string: ' + color, function () {
+          assert.match(color, hexColorRe);
+        });
+      }
+    });
+
+    describe('isValid()', function () {
+      it('should return true', function () {
+        assert.equal(mockValidInstance.isValid(), true);
+      });
+
+      it('should return false', function () {
+        assert.equal(new SchemeSweet({}).isValid(), false);
+      });
     });
   });
 

@@ -7,8 +7,6 @@ var schemeSweet = (function () {
   var uuid = require('uuid');
   var template = require('./template.js');
 
-  var AUTHOR = 'Scheme Sweet (https://github.com/briles/scheme-sweet)';
-
   /**
    * The `SchemeSweet` class builds a tmTheme by populating a
    * template with colors specified in a palette and optional metadata
@@ -22,10 +20,10 @@ var schemeSweet = (function () {
       return new SchemeSweet(arguments);
     }
 
-    this._palette = this._paletteToHex(options.palette);
+    this._palette = paletteToHex(options.palette);
     this._metadata = options.metadata || {
       name: '',
-      author: AUTHOR,
+      author: 'Scheme Sweet (https://github.com/briles/scheme-sweet)',
       comment: 'Made by Scheme Sweet',
     };
 
@@ -38,7 +36,7 @@ var schemeSweet = (function () {
    */
   SchemeSweet.prototype.buildTmTheme = function () {
     if (!this._tmTheme) {
-      this._prepareTemplate();
+      this._tmTheme = prepareTemplate(this);
     }
 
     return plist.build(this._tmTheme);
@@ -71,9 +69,9 @@ var schemeSweet = (function () {
    * Converts colors in the palette to Hex or Hex8 strings
    * @private
    * @param  {object} palette the palette to transform
-   * @return {obj}         the modified palette
+   * @return {object}         the modified palette
    */
-  SchemeSweet.prototype._paletteToHex = function (palette) {
+  function paletteToHex(palette) {
     for (var color in palette) {
       var colorObj = tinycolor(palette[color]);
 
@@ -86,35 +84,37 @@ var schemeSweet = (function () {
     }
 
     return palette;
-  };
+  }
 
   /**
    * populates the instance template with colors & metadata
    * @private
+   * @param  {SchemeSweet} instance the SchemeSweet instance to prepare
+   * @return {object}      the populated tmTheme
    */
-  SchemeSweet.prototype._prepareTemplate = function () {
-    var _tmTheme = this._tmTheme;
-    _tmTheme = template(this._palette);
-    _tmTheme.name = this._metadata.name;
-    _tmTheme.author = this._metadata.author;
-    _tmTheme.comment = this._metadata.comment;
-    _tmTheme.uuid = uuid.v4();
+  function prepareTemplate(instance) {
+    var tmTheme = template(instance._palette);
+    tmTheme.name = instance._metadata.name;
+    tmTheme.author = instance._metadata.author;
+    tmTheme.comment = instance._metadata.comment;
+    tmTheme.uuid = uuid.v4();
 
     // Join the scope arrays so Sublime Text can parse them
-    _tmTheme.settings.slice(1).forEach(function (group, index) {
-      index += 1;
+    tmTheme.settings.slice(1).forEach(function (group, index) {
+      index++;
 
       if (isArray(group.scope)) {
-        _tmTheme.settings[index].scope = group.scope.sort().join(',');
+        tmTheme.settings[index].scope = group.scope.sort().join(',');
       }
     });
 
-    this._tmTheme = _tmTheme;
-  };
+    return tmTheme;
+  }
 
   /**
-   * checks if scheme metadata if valid
+   * checks if scheme metadata is valid
    * @private
+   * @param  {object} metadata the instance metadata to validate
    * @return {Boolean}
    */
   function metadataIsValid(metadata) {
@@ -122,8 +122,9 @@ var schemeSweet = (function () {
   }
 
   /**
-   * checks if scheme palette colors are valid
+   * checks if scheme palette is valid
    * @private
+   * @param  {object} palette the instance palette to validate
    * @return {Boolean}
    */
   function paletteIsValid(palette) {
