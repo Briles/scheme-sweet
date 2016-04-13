@@ -45,6 +45,14 @@ var schemeSweet = (function () {
   };
 
   /**
+   * checks the validity of the palette & metadata
+   * @return {Boolean}
+   */
+  SchemeSweet.prototype.isValid = function () {
+    return paletteIsValid(this._palette) && metadataIsValid(this._metadata);
+  };
+
+  /**
    * Writes the tmTheme to a file
    * @param  {string} filepath the path where the file will be written
    */
@@ -75,9 +83,7 @@ var schemeSweet = (function () {
         );
       }
 
-      palette[color] = colorObj._a !== 1
-                     ? colorObj.toSublimeHex8String()
-                     : colorObj.toHexString();
+      palette[color] = colorObj._a !== 1 ? colorObj.toSublimeHex8String() : colorObj.toHexString();
     }
 
     return palette;
@@ -108,6 +114,34 @@ var schemeSweet = (function () {
   };
 
   /**
+   * checks if scheme metadata if valid
+   * @private
+   * @return {Boolean}
+   */
+  function metadataIsValid(metadata) {
+    return metadata.name.length > 0 && isString(metadata.name);
+  }
+
+  /**
+   * checks if scheme palette colors are valid
+   * @private
+   * @return {Boolean}
+   */
+  function paletteIsValid(palette) {
+    var numValid = 0;
+
+    for (var colorKey in palette) {
+      if (!tinycolor(palette[colorKey]).isValid()) {
+        return;
+      }
+
+      numValid++;
+    }
+
+    return numValid === Object.keys(palette).length;
+  }
+
+  /**
    * Converts tinycolor color to Hex8 string suitable for Sublime Text.
    * Sublime Text expects the alpha channel at the end of the string:
    * IE: #000000FF instead of #FF000000
@@ -127,6 +161,16 @@ var schemeSweet = (function () {
    */
   var isArray = Array.isArray || function (arr) {
     return Object.prototype.toString.call(arr) === '[object Array]';
+  };
+
+  /**
+   * tests if is a String
+   * @private
+   * @param  {any} string
+   * @return {boolean}
+   */
+  var isString = function (str) {
+    return typeof str === 'string' || str instanceof String;
   };
 
   return SchemeSweet;
