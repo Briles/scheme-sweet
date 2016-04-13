@@ -78,9 +78,8 @@ var schemeSweet = (function () {
       var colorObj = tinycolor(palette[color]);
 
       if (!colorObj.isValid()) {
-        throw new Error(
-          '"' + palette[color] + '" is not a valid tinycolor color'
-        );
+        console.log('"' + palette[color] + '" is not a valid tinycolor color');
+        return;
       }
 
       palette[color] = colorObj._a !== 1 ? colorObj.toSublimeHex8String() : colorObj.toHexString();
@@ -128,6 +127,10 @@ var schemeSweet = (function () {
    * @return {Boolean}
    */
   function paletteIsValid(palette) {
+    if (!palette) {
+      return false;
+    }
+
     var numValid = 0;
 
     for (var colorKey in palette) {
