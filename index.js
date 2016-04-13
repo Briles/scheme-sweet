@@ -5,6 +5,7 @@ var schemeSweet = (function () {
   const plist = require('plist');
   const tinycolor = require('tinycolor2');
   const uuid = require('uuid');
+  var template = require('./template.js');
 
   const AUTHOR = 'Scheme Sweet (https://github.com/briles/scheme-sweet)';
 
@@ -27,7 +28,6 @@ var schemeSweet = (function () {
       author: AUTHOR,
       comment: 'Made by Scheme Sweet',
     };
-    this._template = options.template || './template.js';
 
     return this;
   };
@@ -89,7 +89,7 @@ var schemeSweet = (function () {
    */
   SchemeSweet.prototype._prepareTemplate = function () {
     var _tmTheme = this._tmTheme;
-    _tmTheme = require(this._template)(this._palette);
+    _tmTheme = template(this._palette);
     _tmTheme.name = this._metadata.name;
     _tmTheme.author = this._metadata.author;
     _tmTheme.comment = this._metadata.comment;
