@@ -1,7 +1,6 @@
 var schemeSweet = (function () {
   'use strict';
 
-  var fs = require('fs');
   var plist = require('plist');
   var tinycolor = require('tinycolor2');
   var uuid = require('uuid');
@@ -48,21 +47,6 @@ var schemeSweet = (function () {
    */
   SchemeSweet.prototype.isValid = function () {
     return paletteIsValid(this._palette) && metadataIsValid(this._metadata);
-  };
-
-  /**
-   * Writes the tmTheme to a file
-   * @param  {string} filepath the path where the file will be written
-   */
-  SchemeSweet.prototype.writeTmTheme = function (filepath) {
-    if (typeof filepath !== 'string') {
-      throw new Error(
-        'Expected "filepath" to be string, was "' + typeof filepath + '"'
-      );
-    }
-
-    var tmTheme = this.buildTmTheme();
-    fs.writeFileSync(filepath, tmTheme, 'utf-8');
   };
 
   /**

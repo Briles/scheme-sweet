@@ -117,7 +117,6 @@ Methods
 -------
 
 - `SchemeSweet.buildTmTheme()` returns your color scheme as `plist`
-- `SchemeSweet.writeTmTheme(filepath)` builds your color scheme and writes it to `filepath`
 - `SchemeSweet.isValid()` tests the scheme values for validity
 
 License
