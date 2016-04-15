@@ -33,7 +33,9 @@
       author: 'metadata.author',
       comment: 'metadata.comment',
     },
+    template: function () {},
   };
+
   const mockValidInstance = new SchemeSweet(mockValidConfig);
 
   describe('SchemeSweet', function () {
@@ -45,7 +47,7 @@
 
       for (var confProp in mockValidConfig) {
         confProp = '_' + confProp;
-        it('should have instance property: ' + confProp, function () {
+        it('should create instance property: ' + confProp, function () {
           assert.property(mockValidInstance, confProp);
         });
       }
@@ -61,6 +63,35 @@
           assert.match(color, hexColorRe);
         });
       }
+    });
+
+    describe('_palette', function () {
+      it('should be an object', function () {
+        assert.isObject(mockValidInstance._palette);
+      });
+    });
+
+    describe('_metadata', function () {
+      it('should be an object', function () {
+        assert.isObject(mockValidInstance._metadata);
+      });
+    });
+
+    describe('_template', function () {
+      it('should be a function', function () {
+        assert.isFunction(mockValidInstance._template);
+      });
+    });
+
+    describe('setTemplate()', function () {
+      it('should set _template to a function', function () {
+        mockValidInstance.setTemplate(function () {});
+
+        assert.isFunction(mockValidInstance._template);
+
+        mockValidInstance.setTemplate();
+        assert.isFunction(mockValidInstance._template);
+      });
     });
 
     describe('isValid()', function () {

@@ -4,7 +4,7 @@ var schemeSweet = (function () {
   var plist = require('plist');
   var tinycolor = require('tinycolor2');
   var uuid = require('uuid');
-  var template = require('./template.js');
+  var defaultTemplate = require('./template.js');
 
   /**
    * The `SchemeSweet` class builds a tmTheme by populating a
@@ -25,6 +25,7 @@ var schemeSweet = (function () {
       author: 'Scheme Sweet (https://github.com/briles/scheme-sweet)',
       comment: 'Made by Scheme Sweet',
     };
+    this._template = this.setTemplate(options.template || defaultTemplate);
 
     return this;
   };
@@ -47,6 +48,14 @@ var schemeSweet = (function () {
    */
   SchemeSweet.prototype.isValid = function () {
     return paletteIsValid(this._palette) && metadataIsValid(this._metadata);
+  };
+
+  /**
+   * sets the template
+   * @param {function} templateFunc the template function to set
+   */
+  SchemeSweet.prototype.setTemplate = function (templateFunc) {
+    return isFunction(templateFunc) ? templateFunc : defaultTemplate;
   };
 
   /**
@@ -77,7 +86,7 @@ var schemeSweet = (function () {
    * @return {object}      the populated tmTheme
    */
   function prepareTemplate(instance) {
-    var tmTheme = template(instance._palette);
+    var tmTheme = instance._template(instance._palette);
     tmTheme.name = instance._metadata.name;
     tmTheme.author = instance._metadata.author;
     tmTheme.comment = instance._metadata.comment;
@@ -142,23 +151,33 @@ var schemeSweet = (function () {
   };
 
   /**
-   * tests if is an Array
+   * tests if argument is an Array
    * @private
-   * @param  {any} arr
+   * @param  {any} thing
    * @return {boolean}
    */
-  var isArray = Array.isArray || function (arr) {
-    return Object.prototype.toString.call(arr) === '[object Array]';
+  var isArray = Array.isArray || function (thing) {
+    return Object.prototype.toString.call(thing) === '[object Array]';
   };
 
   /**
-   * tests if is a String
+   * tests if argument is a Function
    * @private
-   * @param  {any} string
+   * @param  {any} thing
    * @return {boolean}
    */
-  var isString = function (str) {
-    return typeof str === 'string' || str instanceof String;
+  var isFunction = function (thing) {
+    return Object.prototype.toString.call(thing) === '[object Function]';
+  };
+
+  /**
+   * tests if argument is a String
+   * @private
+   * @param  {any} thing
+   * @return {boolean}
+   */
+  var isString = function (thing) {
+    return typeof thing === 'string' || thing instanceof String;
   };
 
   return SchemeSweet;
