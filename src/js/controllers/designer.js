@@ -61,7 +61,7 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
   };
 
   $scope.schemeIsValid = function () {
-    return new SchemeSweet($scope.scheme).isValid();
+    return new SchemeSweet(angular.copy($scope.scheme)).isValid();
   };
 
   $scope.prepareScheme = function () {
