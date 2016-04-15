@@ -72,7 +72,7 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
       return;
     }
 
-    $scope.builtScheme = new SchemeSweet($scope.scheme).buildTmTheme();
+    $scope.builtScheme = new SchemeSweet($scope.scheme).build();
     $scope.toggleActiveModal('download');
   };
 
