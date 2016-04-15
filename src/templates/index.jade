@@ -114,7 +114,8 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       .modal-body
         code.scheme-preview#tmtheme {{builtScheme}}
       .modal-footer
-        button.call-to-action.download(
+        p.modal-label Copy the scheme then save it as {{scheme.metadata.name}}.tmTheme
+        button#download.call-to-action.download(
           ngclipboard
           data-clipboard-target="#tmtheme"
           ngclipboard-success="copySuccess(e)"

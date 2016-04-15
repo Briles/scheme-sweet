@@ -40,10 +40,12 @@
 
 .modal-body {
   padding: 20px;
+  padding-bottom: 10px;
 }
 
 .modal-footer {
   padding: 20px;
+  padding-top: 10px;
   .call-to-action {
     width: 100%;
 
@@ -78,6 +80,14 @@
 }
 
 .metadata-inputs {
+}
+
+.modal-label {
+  font-size: 15px;
+
+  display: block;
+
+  margin-bottom: 10px;
 }
 
 .metadata-fieldgroup {
