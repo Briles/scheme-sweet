@@ -34,7 +34,7 @@ var newInstance = new SchemeSweet({
     author: 'Give yourself some attribution',
     comment: 'A short but sweet description about your color scheme',
   },
-  template: 'template.js',
+  template: function,
 });
 ```
 
@@ -110,7 +110,7 @@ Scheme Sweet comes with a single default template, but you can also provide
 your own by adding a template property to the configuration object:
 
 ```javascript
-template: '<path to template>',
+template: function,
 ```
 
 Methods
@@ -118,7 +118,6 @@ Methods
 
 - `SchemeSweet.build()` returns your color scheme as `plist`
 - `SchemeSweet.setTemplate([func=defaultTemplate])` set/reset/change the template
-- `SchemeSweet.isValid()` tests the scheme values for validity
 
 License
 -------

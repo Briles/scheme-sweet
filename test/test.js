@@ -2,9 +2,11 @@
   'use strict';
 
   const SchemeSweet = require('../index.js');
+  const util = require('../lib/util.js');
+  const tinycolor = require('../lib/tinycolor.js');
   const assert = require('chai').assert;
   const _ = require('lodash');
-  const defaultTemplate = require('../template.js');
+  const defaultTemplate = require('../lib/template.js');
 
   const hexColorRe = new RegExp('#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})');
 
@@ -133,13 +135,53 @@
       });
     });
 
-    describe('isValid()', function () {
-      it('should return true', function () {
-        assert.equal(mockValidInstance.isValid(), true);
+  });
+
+  describe('Utility', function () {
+    describe('isArray', function () {
+      it('should return `true` for arrays', function () {
+        assert.isTrue(util.isArray([1, 'a', 2, 'b', 3, 'c']));
       });
 
-      it('should return false', function () {
-        assert.equal(new SchemeSweet({}).isValid(), false);
+      it('should return `false` for non-arrays', function () {
+        assert.isFalse(util.isArray('a'));
+        assert.isFalse(util.isArray(/x/));
+        assert.isFalse(util.isArray(1));
+        assert.isFalse(util.isArray(new Date));
+        assert.isFalse(util.isArray(new Error));
+        assert.isFalse(util.isArray(true));
+        assert.isFalse(util.isArray({
+          0: 1,
+          length: 1,
+        }));
+      });
+    });
+
+    describe('isString', function () {
+      it('should return `true` for strings', function () {
+        assert.isTrue(util.isString('1'));
+        assert.isTrue(util.isString(Object('1')));
+      });
+
+      it('should return `false` for non-strings', function () {
+        assert.isFalse(util.isString([1, 'a', 2, 'b', 3, 'c']));
+        assert.isFalse(util.isString(/x/));
+        assert.isFalse(util.isString(1));
+        assert.isFalse(util.isString(new Date));
+        assert.isFalse(util.isString(new Error));
+        assert.isFalse(util.isString(true));
+        assert.isFalse(util.isString({
+          0: 1,
+          length: 1,
+        }));
+      });
+    });
+  });
+
+  describe('tinycolor', function () {
+    describe('toSublimeHex8String()', function () {
+      it('should return Hex color string with flipped alpha', function () {
+        assert.strictEqual(tinycolor('#50ffffff').toSublimeHex8String(), '#ffffff50');
       });
     });
   });

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "style": "npm run style:main & npm run style:test",
-    "style:main": "jscs index.js template.js",
+    "style:main": "jscs index.js ./lib/template.js ./lib/util.js ./lib/tinycolor.js",
     "style:test": "jscs test/test.js",
     "test": "npm run test:main",
     "test:main": "./node_modules/.bin/mocha ./test/test.js",
