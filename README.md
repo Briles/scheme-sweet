@@ -116,7 +116,7 @@ template: '<path to template>',
 Methods
 -------
 
-- `SchemeSweet.buildTmTheme()` returns your color scheme as `plist`
+- `SchemeSweet.build()` returns your color scheme as `plist`
 - `SchemeSweet.setTemplate([func=defaultTemplate])` set/reset/change the template
 - `SchemeSweet.isValid()` tests the scheme values for validity
 

@@ -34,7 +34,7 @@ var schemeSweet = (function () {
    * Converts the tmTheme to plist XML
    * @return {string} the tmTheme as plist XML
    */
-  SchemeSweet.prototype.buildTmTheme = function () {
+  SchemeSweet.prototype.build = function () {
     if (!this._tmTheme) {
       this._tmTheme = prepareTemplate(this);
     }
