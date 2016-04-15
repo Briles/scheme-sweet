@@ -6,6 +6,7 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
   $scope.workspace = {
     activeModal: '',
     copied: false,
+    schemeHasChanged: false,
   };
 
   $scope.scheme = {
@@ -63,16 +64,16 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     return new SchemeSweet($scope.scheme).isValid();
   };
 
-  $scope.log = function () {
-    console.log($scope.scheme);
-  };
-
   $scope.prepareScheme = function () {
-    if (!$scope.schemeIsValid) {
+    if (!$scope.schemeIsValid()) {
       return;
     }
 
-    $scope.builtScheme = new SchemeSweet($scope.scheme).build();
+    if ($scope.workspace.schemeHasChanged) {
+      $scope.builtScheme = new SchemeSweet($scope.scheme).build();
+      $scope.workspace.schemeHasChanged = false;
+    }
+
     $scope.toggleActiveModal('download');
   };
 

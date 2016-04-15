@@ -65,7 +65,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
                   type="text"
                   ng-model="scheme.palette[name]"
                   value="{{color}}"
-                  ng-change="log()"
+                  ng-change="workspace.schemeHasChanged = true;"
                 )
     .modal.modal-metadata(ng-class="{active: isActiveModal('metadata')}")
       .modal-header
@@ -81,7 +81,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
               ng-required="required"
               ng-value="scheme.metadata.name"
               ng-model="scheme.metadata.name"
-              ng-change="log()"
+              ng-change="workspace.schemeHasChanged = true;"
             )
             label.metadata-input-label(for="scheme-name") Name
           .metadata-fieldgroup
@@ -92,7 +92,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
               ng-required="required"
               ng-value="scheme.metadata.author"
               ng-model="scheme.metadata.author"
-              ng-change="log()"
+              ng-change="workspace.schemeHasChanged = true;"
             )
             label.metadata-input-label(for="scheme-author") Author
           .metadata-fieldgroup
@@ -103,7 +103,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
               ng-required="required"
               ng-value="scheme.metadata.comment"
               ng-model="scheme.metadata.comment"
-              ng-change="log()"
+              ng-change="workspace.schemeHasChanged = true;"
             )
             label.metadata-input-label(for="scheme-description") Description
     .modal.modal-download(ng-class="{active: isActiveModal('download')}")
