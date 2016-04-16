@@ -67,6 +67,10 @@
 }
 
 .palette-item-toolbar-item {
+  display: inline-block;
+
+  padding: 0 5px;
+
   cursor: pointer;
   transition: all 100ms ease-in-out;
 

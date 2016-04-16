@@ -61,11 +61,16 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
               .palette-item-head
                 p.palette-meta {{name}}
                 .palette-item-toolbar
-                  .palette-item-toolbar-item
-                    i.material-icons.tip.tip-w(
-                      ng-click="randomize()"
-                      aria-label="Randomize Color"
-                    ) shuffle
+                  .palette-item-toolbar-item.tip.tip-nw(
+                    ng-click="randomize()"
+                    aria-label="Randomize Color"
+                  )
+                    i.material-icons shuffle
+                  .palette-item-toolbar-item.tip.tip-nw(
+                    ng-click="complement()"
+                    aria-label="Complement Color"
+                  )
+                    i.material-icons arrow_upward
               .palette-item-body
                 input.color-input(
                   type="text"

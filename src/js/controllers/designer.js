@@ -85,6 +85,10 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     $scope.scheme.palette[this.name] = tinycolor.random().toHexString();
   };
 
+  $scope.complement = function () {
+    $scope.scheme.palette[this.name] = tinycolor(this.color).complement().toHexString();
+  };
+
   $scope.getContrastColor = function () {
     if (tinycolor(this.color).isValid()) {
       return tinycolor.mostReadable(this.color, ['#fff', '#000']).toHexString();
