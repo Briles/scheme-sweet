@@ -23,6 +23,8 @@
 .palette-item {
   font-weight: 500;
 
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
@@ -49,10 +51,29 @@
   display: block;
 
   padding: 10px;
+  padding-right: 44px;
 
   text-align: left;
 
   opacity: .5;
+}
+
+.palette-item-toolbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: 10px;
+}
+
+.palette-item-toolbar-item {
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+
+  opacity: .5;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .color-input {

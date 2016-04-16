@@ -64,6 +64,10 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     return new SchemeSweet(angular.copy($scope.scheme)).isValid();
   };
 
+  $scope.schemeIsValid = function () {
+    return paletteIsValid($scope.scheme.palette) && metadataIsValid($scope.scheme.metadata);
+  };
+
   $scope.prepareScheme = function () {
     if (!$scope.schemeIsValid()) {
       return;
@@ -77,9 +81,13 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     $scope.toggleActiveModal('download');
   };
 
-  $scope.getContrastColor = function (background) {
-    if (tinycolor(background).isValid()) {
-      return tinycolor.mostReadable(background, ['#fff', '#000']).toHexString();
+  $scope.randomize = function () {
+    $scope.scheme.palette[this.name] = tinycolor.random().toHexString();
+  };
+
+  $scope.getContrastColor = function () {
+    if (tinycolor(this.color).isValid()) {
+      return tinycolor.mostReadable(this.color, ['#fff', '#000']).toHexString();
     }
   };
 
@@ -103,4 +111,31 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
   $scope.getLocation = function () {
     return $location.$$path;
   };
+
+  function metadataIsValid(metadata) {
+    return metadata.name.length > 0 && isString(metadata.name);
+  }
+
+  function paletteIsValid(palette) {
+    if (!palette) {
+      return false;
+    }
+
+    var numValid = 0;
+
+    for (var colorKey in palette) {
+      if (!tinycolor(palette[colorKey]).isValid()) {
+        return;
+      }
+
+      numValid++;
+    }
+
+    return numValid === Object.keys(palette).length;
+  }
+
+  function isString(thing) {
+    return typeof thing === 'string' || thing instanceof String;
+  }
+
 };

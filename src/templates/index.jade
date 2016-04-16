@@ -57,9 +57,15 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
               |Download
       .view-pane.palette-wrapper
           .palette-item-wrapper(ng-repeat="(name, color) in scheme.palette")
-            .palette-item(ng-style="{'background': color, 'color': getContrastColor(color)}")
+            .palette-item(ng-style="{'background': color, 'color': getContrastColor()}")
               .palette-item-head
                 p.palette-meta {{name}}
+                .palette-item-toolbar
+                  .palette-item-toolbar-item
+                    i.material-icons.tip.tip-w(
+                      ng-click="randomize()"
+                      aria-label="Randomize Color"
+                    ) shuffle
               .palette-item-body
                 input.color-input(
                   type="text"
