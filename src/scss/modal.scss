@@ -40,12 +40,13 @@
 
 .modal-body {
   padding: 20px;
-  padding-bottom: 10px;
+  + .modal-footer {
+    padding-top: 0;
+  }
 }
 
 .modal-footer {
   padding: 20px;
-  padding-top: 10px;
   .call-to-action {
     width: 100%;
 
