@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Briles/scheme-sweet.svg?branch=master)](https://travis-ci.org/Briles/scheme-sweet)
+
 Scheme Sweet
 ------------
 A sweet suite of tools for creating sweet Sublime Text color schemes
