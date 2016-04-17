@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Briles/scheme-sweet.svg?branch=master)](https://travis-ci.org/Briles/scheme-sweet)
+[![codecov.io](https://codecov.io/github/Briles/scheme-sweet/coverage.svg?branch=master)](https://codecov.io/github/Briles/scheme-sweet?branch=master)
 
 Scheme Sweet
 ------------
