@@ -12,5 +12,7 @@ before_install:
   npm install -g npm@2.15.1
 install:
   - npm install
+  - npm install -g codecov
 script:
   - npm run validate
+  - ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec && ./node_modules/.bin/codecov
