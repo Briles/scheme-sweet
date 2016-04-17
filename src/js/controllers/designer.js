@@ -100,13 +100,13 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
   };
 
   $scope.copySuccess = function (e) {
-    var originalMessage = e.trigger.innerText;
+    var originalMessage = e.trigger.innerHTML;
     $scope.workspace.copied = true;
     e.trigger.innerText = 'Copied!';
 
     $timeout(function () {
       $scope.workspace.copied = false;
-      e.trigger.innerText = originalMessage;
+      e.trigger.innerHTML = originalMessage;
     }, 2000);
 
     e.clearSelection();
