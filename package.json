@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "style": "npm run style:main & npm run style:test",
-    "style:main": "jscs index.js ./lib/template.js ./lib/util.js ./lib/tinycolor.js",
-    "style:test": "jscs test/test.js",
+    "style:main": "./node_modules/.bin/jscs index.js ./lib/template.js ./lib/util.js ./lib/tinycolor.js",
+    "style:test": "./node_modules/.bin/jscs test/test.js",
     "test": "npm run test:main",
     "test:main": "./node_modules/.bin/mocha ./test/test.js",
     "validate": "npm run style & npm run test",
