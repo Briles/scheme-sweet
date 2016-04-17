@@ -8,5 +8,7 @@ git:
 branches:
   only:
     - master
+before_install:
+  npm install -g npm
 install:
   - npm install
