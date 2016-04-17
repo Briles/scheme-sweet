@@ -9,6 +9,6 @@ branches:
   only:
     - master
 before_install:
-  npm install -g npm
+  npm install -g npm@2.15.1
 install:
   - npm install
