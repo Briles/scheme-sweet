@@ -38,13 +38,14 @@
   padding: 0 6px;
 
   cursor: pointer;
-  transition: opacity 200ms ease-in-out;
 
   color: inherit;
   border: 0;
   outline: none;
   background: none;
   i {
+    transition: opacity 200ms ease-in-out;
+
     opacity: .5;
   }
   &:hover i {
