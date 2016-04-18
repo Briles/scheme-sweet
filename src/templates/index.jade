@@ -138,7 +138,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       button.toolbar-item.tip.tip-n(
         aria-label="Clear Selection"
         ng-click="selectNone()"
-        ng-disabled="!workspace.hasSelections()"
+        ng-disabled="!hasSelections()"
       )
         i.material-icons clear_all
       button.toolbar-item.tip.tip-n(
@@ -147,7 +147,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       )
         i.material-icons done_all
     .toolbar-section
-      fieldset(ng-disabled="!workspace.hasSelections()")
+      fieldset(ng-disabled="!hasSelections()")
         button.toolbar-item.tip.tip-n(
           ng-click="randomize()"
           aria-label="Randomize Colors"
@@ -158,3 +158,9 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
           aria-label="Complement Colors"
         )
           i.material-icons arrow_upward
+      button.toolbar-item.tip.tip-n(
+        ng-click="swap()"
+        aria-label="Swap Colors"
+        ng-disabled="!hasExactSelections(2)"
+      )
+        i.material-icons repeat

@@ -7,8 +7,6 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     activeModal: '',
     copied: false,
     schemeHasChanged: false,
-    hasSelections: function () {return !!this.selectedColors[Object.keys(this.selectedColors)[0]];},
-
     selectedColors: {},
   };
 
@@ -96,6 +94,29 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     }
   };
 
+  function countTrueValues(obj, stop) {
+    var count = 0;
+    stop = stop || 0;
+
+    for (var key in obj) {
+      if (stop !== 0 && count > stop) {
+        break;
+      } else if (obj[key] === true) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+
+  $scope.hasSelections = function () {
+    return !!countTrueValues($scope.workspace.selectedColors, 1);
+  };
+
+  $scope.hasExactSelections = function (n) {
+    return countTrueValues($scope.workspace.selectedColors) === n;
+  };
+
   function transformColors(callback) {
     for (var colorKey in $scope.workspace.selectedColors) {
       if ($scope.workspace.selectedColors[colorKey]) {
@@ -114,6 +135,22 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     transformColors(function (color) {
       return tinycolor(color).complement().toHexString();
     });
+  };
+
+  $scope.swap = function () {
+    var colors = [];
+
+    for (var colorKey in $scope.workspace.selectedColors) {
+      if ($scope.workspace.selectedColors[colorKey]) {
+        colors.push(colorKey);
+      }
+    }
+
+    var color1 = $scope.scheme.palette[colors[0]];
+    var color2 = $scope.scheme.palette[colors[1]];
+
+    $scope.scheme.palette[colors[0]] = color2;
+    $scope.scheme.palette[colors[1]] = color1;
   };
 
   $scope.getContrastColor = function () {
