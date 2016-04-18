@@ -7,6 +7,9 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     activeModal: '',
     copied: false,
     schemeHasChanged: false,
+    hasSelections: function () {return !!this.selectedColors[Object.keys(this.selectedColors)[0]];},
+
+    selectedColors: {},
   };
 
   $scope.scheme = {
@@ -81,12 +84,36 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     $scope.toggleActiveModal('download');
   };
 
+  $scope.selectNone = function () {
+    $scope.workspace.selectedColors = {};
+  };
+
+  $scope.selectAll = function () {
+    var palette = $scope.scheme.palette;
+
+    for (var colorKey in palette) {
+      $scope.workspace.selectedColors[colorKey] = true;
+    }
+  };
+
+  function transformColors(callback) {
+    for (var colorKey in $scope.workspace.selectedColors) {
+      if ($scope.workspace.selectedColors[colorKey]) {
+        $scope.scheme.palette[colorKey] = callback($scope.scheme.palette[colorKey]);
+      }
+    }
+  }
+
   $scope.randomize = function () {
-    $scope.scheme.palette[this.name] = tinycolor.random().toHexString();
+    transformColors(function () {
+      return tinycolor.random().toHexString();
+    });
   };
 
   $scope.complement = function () {
-    $scope.scheme.palette[this.name] = tinycolor(this.color).complement().toHexString();
+    transformColors(function (color) {
+      return tinycolor(color).complement().toHexString();
+    });
   };
 
   $scope.getContrastColor = function () {

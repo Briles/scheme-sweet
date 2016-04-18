@@ -1,0 +1,56 @@
+.universal-toolbar-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+
+  display: flex;
+  flex-direction: row;
+
+  padding: 10px;
+
+  transform: translate(-50%, 0);
+
+  color: $white;
+  background: #383838;
+  box-shadow: map-get($shadows, large);
+
+  flex-wrap: nowrap;
+}
+
+.toolbar-section {
+  display: inline-flex;
+
+  padding: 0 9px;
+
+  white-space: nowrap;
+
+  border-left: 2px solid fade-out($white, .85);
+
+  flex: 0 1 auto;
+  &:first-child {
+    padding-left: 0;
+
+    border-left: 0;
+  }
+}
+
+.toolbar-item {
+  padding: 0 6px;
+
+  cursor: pointer;
+  transition: opacity 200ms ease-in-out;
+
+  color: inherit;
+  border: 0;
+  outline: none;
+  background: none;
+  i {
+    opacity: .5;
+  }
+  &:hover i {
+    opacity: 1;
+  }
+  &:disabled i {
+    opacity: .25;
+  }
+}

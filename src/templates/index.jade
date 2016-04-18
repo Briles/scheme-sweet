@@ -67,17 +67,16 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
             value="{{color}}"
             ng-change="workspace.schemeHasChanged = true;"
           )
-          .palette-item-toolbar.palette-item-section
-            .palette-item-toolbar-item.tip.tip-nw(
-              ng-click="randomize()"
-              aria-label="Randomize Color"
-            )
-              i.material-icons shuffle
-            .palette-item-toolbar-item.tip.tip-nw(
-              ng-click="complement()"
-              aria-label="Complement Color"
-            )
-              i.material-icons arrow_upward
+          .palette-item-section
+            .palette-selection-toggle
+              input.palette-item-checkbox(
+                type="checkbox"
+                id="{{name}}"
+                name="selected"
+                ng-model="workspace.selectedColors[name]"
+              )
+              label(for="{{name}}")
+                i.material-icons done
   .modal.modal-metadata(ng-class="{active: isActiveModal('metadata')}")
     .modal-header
       h1.modal-title Metadata
@@ -134,4 +133,29 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       )
         i.material-icons content_copy
         |Copy Color Scheme
-
+  .universal-toolbar-wrapper.container
+    .toolbar-section
+      button.toolbar-item.tip.tip-n(
+        aria-label="Clear Selection"
+        ng-click="selectNone()"
+        ng-disabled="!workspace.hasSelections()"
+      )
+        i.material-icons clear_all
+      button.toolbar-item.tip.tip-n(
+        aria-label="Select All"
+        ng-click="selectAll()"
+      )
+        i.material-icons done_all
+    .toolbar-section
+      button.toolbar-item.tip.tip-n(
+        ng-click="randomize()"
+        aria-label="Randomize Colors"
+        ng-disabled="!workspace.hasSelections()"
+      )
+        i.material-icons shuffle
+      button.toolbar-item.tip.tip-n(
+        ng-click="complement()"
+        aria-label="Complement Colors"
+        ng-disabled="!workspace.hasSelections()"
+      )
+        i.material-icons arrow_upward

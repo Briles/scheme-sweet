@@ -1,13 +1,13 @@
 .palette-wrapper {
   display: block;
 
-  padding: 2em 0 110px;
+  padding: 2em 0 78px;
 }
 .palette-item-wrapper {
   display: flex;
 
   width: 100%;
-  height: 4.5em;
+  height: 4.857142857142857em;
 
   transition: all 100ms ease-in-out;
   white-space: nowrap;
@@ -52,17 +52,31 @@
   opacity: .5;
 }
 
-.palette-item-toolbar-item {
-  display: inline-block;
+.palette-selection-toggle {
+  input {
+    display: none;
+    &:checked + label {
+      transform: rotate(0deg);
 
-  padding: 0 5px;
+      opacity: 1;
+      color: $white;
+      border-radius: 50%;
+      background-color: hsl(120, 49%, 63%);
+      box-shadow: map-get($shadows, 'small');
+    }
+  }
+  label {
+    display: block;
 
-  cursor: pointer;
-  transition: all 100ms ease-in-out;
+    padding: 2px;
 
-  opacity: .5;
-  &:hover {
-    opacity: 1;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    transform: rotate(-360deg);
+
+    opacity: .65;
+    color: inherit;
+    border-radius: 0;
   }
 }
 
