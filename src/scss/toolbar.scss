@@ -1,25 +1,37 @@
+.toolbar-wrapper {
+  display: block;
+
+  width: 100%;
+
+  background: #383838;
+  box-shadow: map-get($shadows, large);
+}
+
 .toolbar {
   position: relative;
   z-index: 10001;
 
   width: 100%;
-  padding: 20px 24px;
+  padding: 10px 24px;
 
   color: $white;
-  background: #383838;
-  box-shadow: map-get($shadows, small);
-
-  flex: 0 0 auto;
 }
 
 .toolbar-meta {
-  float: left;
+  padding-bottom: 10px;
+
+  text-align: center;
+
+  border-bottom: 2px solid fade-out($white, .93);
 }
 
 .toolbar-buttons {
-  float: right;
-
   margin-top: 6.5px;
+
+  text-align: center;
+  .call-to-action {
+    width: 50%;
+  }
 }
 
 .call-to-action {
@@ -27,7 +39,6 @@
 
   display: inline-block;
 
-  margin-left: 5px;
   padding: 8px 12px 8px 10px;
 
   cursor: pointer;
@@ -45,9 +56,6 @@
   .material-icons {
     margin-right: 10px;
   }
-  &:first-of-type {
-    margin-left: 0;
-  }
   &:hover, &.active, &.success {
     opacity: 1;
   }
@@ -56,30 +64,5 @@
   }
   &.success {
     background: #63cc62;
-  }
-}
-
-@media screen and (max-width: 580px) {
-  .toolbar-wrapper {
-  }
-  .toolbar {
-    padding-bottom: 10px;
-  }
-  .toolbar-meta {
-    padding-bottom: 10px;
-
-    text-align: center;
-
-    border-bottom: 2px solid fade-out($white, .93);
-  }
-  .toolbar-buttons {
-    margin-top: 12px;
-    .call-to-action {
-      width: 50%;
-      margin: 0;
-    }
-  }
-  .toolbar-buttons, .toolbar-meta {
-    float: none;
   }
 }

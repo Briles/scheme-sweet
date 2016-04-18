@@ -1,22 +1,21 @@
 .palette-wrapper {
-  flex: 1 1 auto;
-  flex-wrap: wrap;
+  display: block;
+
+  padding: 2em 0 110px;
 }
 .palette-item-wrapper {
-  $padding: 10px;
-  $highlight-color: fade-out($black, .89);
+  display: flex;
 
-  display: inline-flex;
-
-  width: 100 / 7 * 1%;
-  min-height: 120px;
+  width: 100%;
+  height: 4.5em;
 
   transition: all 100ms ease-in-out;
-  &:nth-child(-n+6) {
-    width: 100 / 6 * 1%;
+  white-space: nowrap;
+  &:first-child {
+    transition: none;
   }
-  &:nth-child(n+7):nth-child(-n+11) {
-    width: 100 / 5 * 1%;
+  &:nth-child(5), &:nth-child(6), &:nth-child(11), &:nth-child(13), &:nth-child(15), &:nth-child(17), &:nth-child(19), &:nth-child(21), &:nth-child(23), {
+    margin-bottom: 1em;
   }
 }
 
@@ -26,44 +25,31 @@
   position: relative;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   width: 100%;
+  padding: 0 10px;
 
-  letter-spacing: .05em;
-
-  flex: 1 1 auto;
   flex-wrap: nowrap;
-  align-content: stretch;
-  align-self: stretch;
 }
 
-.palette-item-body {
-  position: relative;
+.palette-item-section {
+  padding: (20 / 14) * 1em 0;
 
-  flex: 1 1 auto;
-  align-self: stretch;
+  flex: 0 1 auto;
+  &:nth-child(2) {
+    line-height: 4.5em;
+
+    padding: 0;
+
+    flex-grow: 1;
+  }
 }
 
 .palette-meta {
   font-size: 15px;
 
-  display: block;
-
-  padding: 10px;
-  padding-right: 44px;
-
-  text-align: left;
-
   opacity: .5;
-}
-
-.palette-item-toolbar {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  padding: 10px;
 }
 
 .palette-item-toolbar-item {
@@ -83,15 +69,6 @@
 .color-input {
   font-size: 20px;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  display: block;
-
-  width: 100%;
-
-  transform: translate(-50%, -50%);
   text-align: center;
   text-transform: uppercase;
 
@@ -100,25 +77,4 @@
   border: 0;
   outline: none;
   background: transparent;
-}
-
-@media screen and (max-width: 760px) {
-  .palette-item-wrapper {
-    &:nth-child(n):nth-child(n) {
-      width: 100 / 3 * 1%;
-    }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .palette-item-wrapper {
-    min-height: 88px;
-    &:nth-child(n):nth-child(n) {
-      width: 100%;
-    }
-  }
-
-  .color-input {
-    transform: translate(-50%,-100%);
-  }
 }
