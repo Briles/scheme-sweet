@@ -147,15 +147,14 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       )
         i.material-icons done_all
     .toolbar-section
-      button.toolbar-item.tip.tip-n(
-        ng-click="randomize()"
-        aria-label="Randomize Colors"
-        ng-disabled="!workspace.hasSelections()"
-      )
-        i.material-icons shuffle
-      button.toolbar-item.tip.tip-n(
-        ng-click="complement()"
-        aria-label="Complement Colors"
-        ng-disabled="!workspace.hasSelections()"
-      )
-        i.material-icons arrow_upward
+      fieldset(ng-disabled="!workspace.hasSelections()")
+        button.toolbar-item.tip.tip-n(
+          ng-click="randomize()"
+          aria-label="Randomize Colors"
+        )
+          i.material-icons shuffle
+        button.toolbar-item.tip.tip-n(
+          ng-click="complement()"
+          aria-label="Complement Colors"
+        )
+          i.material-icons arrow_upward
