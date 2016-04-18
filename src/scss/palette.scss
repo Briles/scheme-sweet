@@ -1,7 +1,7 @@
 .palette-wrapper {
   display: block;
 
-  padding: 2em 0 78px;
+  padding: 2em 0 98px;
 }
 .palette-item-wrapper {
   display: flex;
@@ -38,8 +38,7 @@
 
   flex: 0 1 auto;
   &:nth-child(2) {
-    line-height: 4.5em;
-
+    margin: 0 30px 0 0;
     padding: 0;
 
     flex-grow: 1;

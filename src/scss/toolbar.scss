@@ -30,7 +30,12 @@
 
   text-align: center;
   .call-to-action {
-    width: 50%;
+    &:first-child {
+      margin-right: 15px;
+    }
+    &:last-child {
+      margin-left: 15px;
+    }
   }
 }
 
