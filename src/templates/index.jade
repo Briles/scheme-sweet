@@ -10,7 +10,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       name='description'
       content="A sweet suite of tools for creating sweet Sublime Text color schemes"
     )
-    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1')
     link(rel='icon' type='image/x-icon' href='favicon.ico')
     link(href='main.min.css' rel='stylesheet' type='text/css' media='all')
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
@@ -61,12 +61,13 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       )
         .palette-item
           p.palette-item-section.palette-meta {{name}}
-          input.palette-item-section.color-input(
-            type="text"
-            ng-model="scheme.palette[name]"
-            value="{{color}}"
-            ng-change="workspace.schemeHasChanged = true;"
-          )
+          .palette-item-section
+            input.color-input(
+              type="text"
+              ng-model="scheme.palette[name]"
+              value="{{color}}"
+              ng-change="workspace.schemeHasChanged = true;"
+            )
           .palette-item-section
             .palette-selection-toggle
               input.palette-item-checkbox(

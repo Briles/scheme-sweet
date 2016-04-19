@@ -3,11 +3,12 @@
 
   padding: 2em 0 98px;
 }
+
 .palette-item-wrapper {
   display: flex;
 
   width: 100%;
-  height: 4.857142857142857em;
+  height: 68px;
 
   transition: all 100ms ease-in-out;
   white-space: nowrap;
@@ -81,6 +82,9 @@
 
 .color-input {
   font-size: 20px;
+  line-height: 68px;
+
+  width: 100%;
 
   text-align: center;
   text-transform: uppercase;
