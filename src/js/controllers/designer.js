@@ -45,6 +45,10 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     },
   };
 
+  $scope.$watch('scheme', function () {
+    $scope.workspace.schemeHasChanged = true;
+  }, true);
+
   $scope.setActiveModal = function (modalName) {
     $scope.workspace.activeModal = modalName;
   };
