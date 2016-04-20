@@ -1,4 +1,4 @@
-module.exports = function ($scope, $routeParams, $location, $timeout) {
+module.exports = function ($scope, $routeParams, $location, $timeout, hotkeys) {
   'use strict';
 
   var SchemeSweet = require('scheme-sweet');
@@ -157,6 +157,18 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     $scope.scheme.palette[colors[1]] = color1;
   };
 
+  function adjustBrightness(increment) {
+    transformColors(function (color) {
+      return tinycolor(color).brighten(increment).toHexString();
+    });
+  }
+
+  function adjustSaturation(increment) {
+    transformColors(function (color) {
+      return tinycolor(color).saturate(increment).toHexString();
+    });
+  }
+
   $scope.getContrastColor = function () {
     if (tinycolor(this.color).isValid()) {
       return tinycolor.mostReadable(this.color, ['#fff', '#000']).toHexString();
@@ -167,7 +179,7 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
     return !!$scope.workspace.copied;
   };
 
-  $scope.copySuccess = function (e) {
+  $scope.copySuccess = function () {
     var originalMessage = e.trigger.innerHTML;
     $scope.workspace.copied = true;
     e.trigger.innerText = 'Copied!';
@@ -183,6 +195,37 @@ module.exports = function ($scope, $routeParams, $location, $timeout) {
   $scope.getLocation = function () {
     return $location.$$path;
   };
+
+  /**
+   * Hotkeys
+   */
+
+  hotkeys.bindTo($scope).add({
+    combo: 'w',
+    callback: function () {
+      if ($scope.hasExactSelections(2)) $scope.swap();
+    },
+  }).add({
+    combo: 'g',
+    callback: function () {
+      if ($scope.hasSelections()) adjustBrightness(1);
+    },
+  }).add({
+    combo: 'b',
+    callback: function () {
+      if ($scope.hasSelections()) adjustBrightness(-1);
+    },
+  }).add({
+    combo: 's',
+    callback: function () {
+      if ($scope.hasSelections()) adjustSaturation(1);
+    },
+  }).add({
+    combo: 'x',
+    callback: function () {
+      if ($scope.hasSelections()) adjustSaturation(-1);
+    },
+  });
 
   function metadataIsValid(metadata) {
     return metadata.name.length > 0 && isString(metadata.name);

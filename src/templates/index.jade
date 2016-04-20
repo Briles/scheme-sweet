@@ -33,6 +33,7 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
       script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js")
     script(src='https://cdn.jsdelivr.net/tinycolor/1.3.0/tinycolor-min.js')
     script(src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.7.0/hotkeys.min.js")
     script(src="main.min.js")
   body(ng-style="{'background': scheme.palette.background}")
     .toolbar-wrapper
@@ -136,11 +137,13 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
         aria-label="Clear Selection"
         ng-click="selectNone()"
         ng-disabled="!hasSelections()"
+        hotkey="{'d': selectNone}"
       )
         i.material-icons clear_all
       button.toolbar-item.tip.tip-n(
         aria-label="Select All"
         ng-click="selectAll()"
+        hotkey="{'a': selectAll}"
       )
         i.material-icons done_all
     .toolbar-section
@@ -148,11 +151,13 @@ html(ng-app="schemeSweet", ng-controller="schemeSweetCtrl")
         button.toolbar-item.tip.tip-n(
           ng-click="randomize()"
           aria-label="Randomize Colors"
+          hotkey="{'r': randomize}"
         )
           i.material-icons shuffle
         button.toolbar-item.tip.tip-n(
           ng-click="complement()"
           aria-label="Complement Colors"
+          hotkey="{'c': complement}"
         )
           i.material-icons arrow_upward
       button.toolbar-item.tip.tip-n(
