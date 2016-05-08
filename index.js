@@ -5,7 +5,6 @@ var schemeSweet = (function () {
   var plist = require('plist');
   var tinycolor = require('./lib/tinycolor.js');
   var util = require('./lib/util.js');
-  var uuid = require('uuid');
 
   /**
    * The `SchemeSweet` class builds a tmTheme by populating a
@@ -82,7 +81,6 @@ var schemeSweet = (function () {
     tmTheme.name = instance._metadata.name;
     tmTheme.author = instance._metadata.author;
     tmTheme.comment = instance._metadata.comment;
-    tmTheme.uuid = uuid.v4();
 
     // Join the scope arrays so Sublime Text can parse them
     tmTheme.settings.slice(1).forEach(function (group, index) {
