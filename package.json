@@ -25,6 +25,7 @@
     "normalize.css": "^4.1.1"
   },
   "dependencies": {
+    "browserify": "^13.0.1",
     "ngclipboard": "^1.1.1"
   }
 }
