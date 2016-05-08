@@ -35,10 +35,7 @@ var schemeSweet = (function () {
    * @return {string} the tmTheme as plist XML
    */
   SchemeSweet.prototype.build = function () {
-    if (!this._tmTheme) {
-      this._tmTheme = prepareTemplate(this);
-    }
-
+    this._tmTheme = prepareTemplate(this);
     return plist.build(this._tmTheme);
   };
 
