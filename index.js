@@ -23,7 +23,7 @@ var schemeSweet = (function () {
     this._palette = paletteToHex(options.palette);
     this._metadata = options.metadata || {
       name: '',
-      author: 'Scheme Sweet (https://github.com/briles/scheme-sweet)',
+      author: 'Scheme Sweet (https://github.com/Briles/scheme-sweet)',
       comment: 'Made by Scheme Sweet',
     };
     this._template = this.setTemplate(options.template || defaultTemplate);
