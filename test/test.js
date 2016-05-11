@@ -184,6 +184,16 @@
         assert.strictEqual(tinycolor('#50ffffff').toSublimeHex8String(), '#ffffff50');
       });
     });
+
+    describe('toSuitableHexString()', function () {
+      it('should return sublime hex8 string when alpha value is not 1', function () {
+        assert.strictEqual(tinycolor('#50ffffff').toSuitableHexString(), '#ffffff50');
+      });
+
+      it('should return sublime hex string when alpha value is 1', function () {
+        assert.strictEqual(tinycolor('#ffffffff').toSuitableHexString(), '#ffffff');
+      });
+    });
   });
 
 }());
