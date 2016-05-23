@@ -16,7 +16,7 @@ var schemeSweet = (function () {
    */
   var SchemeSweet = function (options) {
     if (!(this instanceof SchemeSweet)) {
-      return new SchemeSweet(arguments);
+      return new SchemeSweet(options);
     }
 
     this._palette = paletteToHex(options.palette);
