@@ -1,10 +1,6 @@
-var app = angular.module('schemeSweet', ['ngRoute', 'ngclipboard', 'cfp.hotkeys']);
+var app = angular.module('schemeSweet', ['ngclipboard', 'cfp.hotkeys']);
 
-app.config([
-  '$routeProvider',
-  '$locationProvider',
-  require('../routes'),
-]).config(function (hotkeysProvider) {
+app.config(function (hotkeysProvider) {
   hotkeysProvider.useNgRoute = false;
   hotkeysProvider.includeCheatSheet = false;
 });

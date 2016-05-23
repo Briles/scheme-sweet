@@ -1,4 +1,4 @@
-module.exports = function ($scope, $routeParams, $location, $timeout, hotkeys) {
+module.exports = function ($scope, $location, $timeout, hotkeys) {
   'use strict';
 
   var SchemeSweet = require('scheme-sweet');
